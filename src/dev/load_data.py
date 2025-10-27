@@ -1,6 +1,6 @@
 import pandas as pd
-from .db import SessionLocal, init_db
-from .models import User, Loan, Transaction
+from ..db import SessionLocal, init_db
+from ..models import User, Loan, Transaction
 import sys, os
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 

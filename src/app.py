@@ -6,10 +6,19 @@ from .ai_wrapper import analyze_user, recommend_products
 from .crud import save_recommendation
 from .security import basic_auth
 from .models import User
+from .main_routes import router as main_router
+from .db import init_db
 
 app = FastAPI(title="AI Advisor API")
 
 app = FastAPI(title="AI Advisor API")
+
+@app.on_event("startup")
+def startup_event():
+    print(" Initializing database...")
+    init_db()
+
+app.include_router(main_router)
 
 @app.post("/analyze", response_model=AnalyzeResponse, dependencies=[Depends(basic_auth)])
 def analyze(payload: AnalyzeRequest, db: Session = Depends(get_db)):

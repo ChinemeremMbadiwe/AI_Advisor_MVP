@@ -24,7 +24,8 @@ class User(Base):
 
     user_id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=False)
-    email = Column(String, unique=True)
+    email = Column(String, unique=True, index=True)
+    password = Column(String)
     occupation = Column(String)
     monthly_income = Column(Float)
     monthly_spending = Column(Float)
@@ -33,7 +34,7 @@ class User(Base):
     loan_status = Column(String)
     credit_score = Column(Integer)
     transaction_count = Column(Integer)
-    date_joined = Column(String)
+    date_joined = Column(DateTime, default=datetime.datetime.utcnow)
     spending_ratio = Column(Float)
     avg_transaction = Column(Float)
 

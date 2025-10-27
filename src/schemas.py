@@ -1,6 +1,6 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, EmailStr, Field
 from typing import List, Optional
-from datetime import date
+from datetime import date, datetime
 
 class TransactionIn(BaseModel):
     transaction_id: str
@@ -26,4 +26,23 @@ class RecommendRequest(BaseModel):
     context: Optional[dict] = None
 
 class RecommendResponse(BaseModel):
-    products: List[dict]  # e.g. [{"name": "...", "rationale": "...", "estimated_return": "..."}]
+    products: List[dict] 
+
+class UserBase(BaseModel):
+    name: str
+    email: EmailStr
+    occupation: Optional[str] = None
+
+class UserCreate(UserBase):
+    password: str
+
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str
+
+class UserResponse(UserBase):
+    user_id: int
+    date_joined: datetime
+
+    class Config:
+        orm_mode = True
