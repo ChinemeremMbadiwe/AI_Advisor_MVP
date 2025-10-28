@@ -9,7 +9,6 @@ from .models import User
 from .main_routes import router as main_router
 from .db import init_db
 
-app = FastAPI(title="AI Advisor API")
 
 app = FastAPI(title="AI Advisor API")
 

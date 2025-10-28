@@ -1,12 +1,11 @@
 from sqlalchemy.orm import Session
-from . import models, schemas, auth
+from . import models, schemas
 
 def create_user(db: Session, user: schemas.UserCreate):
-    hashed_pw = auth.hash_password(user.password)
+    
     db_user = models.User(
         name=user.name,
         email=user.email,
-        password=hashed_pw,
         occupation=user.occupation
     )
     db.add(db_user)

@@ -34,11 +34,11 @@ class UserBase(BaseModel):
     occupation: Optional[str] = None
 
 class UserCreate(UserBase):
-    password: str
+    email: EmailStr
+    
 
 class UserLogin(BaseModel):
     email: EmailStr
-    password: str
 
 class UserResponse(UserBase):
     user_id: int

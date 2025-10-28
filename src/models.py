@@ -25,7 +25,6 @@ class User(Base):
     user_id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=False)
     email = Column(String, unique=True, index=True)
-    password = Column(String)
     occupation = Column(String)
     monthly_income = Column(Float)
     monthly_spending = Column(Float)
